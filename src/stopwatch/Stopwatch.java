@@ -2,62 +2,70 @@ package stopwatch;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.text.SimpleDateFormat;
-import java.util.Scanner;
 
-public class Stopwatch {
+public class Stopwatch extends StopwatchRun {
 	private Stopwatch() {
 
 	}
 
+
 	private static Stopwatch insStopwatch = new Stopwatch();
+	private Thread input = new Thread();
+	private Thread stopwatchRun = new Thread();
+	private int second;
+	private int minute;
+	private StringBuffer msg = new StringBuffer();
+	private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 
 	public static Stopwatch getInstance() {
 		return insStopwatch;
 	}
 
-	private static Scanner scanner = new Scanner(System.in);
-
-	private static SimpleDateFormat sdf;
-	private static boolean isRun = true;
-	private static int minute;
-
-	private StringBuffer bf = new StringBuffer();
-	private BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
-	private BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(System.out));
-	
 	public void run() {
-		setStopwatch();
 		printMenu();
 		while (isRun) {
 			runStopwatch();
 		}
-	}
-
-	private void setStopwatch() {
-
+		printResalt();
 	}
 
 	private void printMenu() {
+		msg.append("q) stop\nh) hold\n*) return");
+		try {
+			writer.append(msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.flush();
+			} catch (Exception e2) {
+
+			}
+		}
 
 	}
 
 	private void runStopwatch() {
-		// s h 를 제외한 아무키를 누르면 재시작
-		boolean run = true;
+		stopwatchRun.start();
+		input.start();
 		
 	}
 
-	private int inputNum(String msg) {
-		try {
-			wr.
+	private void printResalt() {
+		minute = time/60;
+		second = time%60;
+		msg.append(String.format("%d분 %d초 소요됨",minute,second);
+		try {		
+			writer.append(msg);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {
+				writer.flush();
+			} catch (Exception e2) {
+			}
 		}
-		
-		
 	}
 
 }
