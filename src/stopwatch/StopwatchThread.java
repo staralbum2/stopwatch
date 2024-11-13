@@ -19,10 +19,11 @@ public class StopwatchThread extends Thread {
 	public static BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
 	public static BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(System.out));
 	public static StopwatchThread stop = new StopwatchThread();
-	
+
 	public static Calendar getCal() {
 		return cal;
 	}
+
 	public static StopwatchThread getStop() {
 		return stop;
 	}
@@ -46,6 +47,7 @@ public class StopwatchThread extends Thread {
 	public int getTime() {
 		return time;
 	}
+
 	public void setTime(int input) {
 		time = input;
 	}
