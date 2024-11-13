@@ -1,24 +1,13 @@
 package stopwatch;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-public class StopwatchRun extends StopwatchThread {
-	
-	private StringBuffer bf = new StringBuffer();
-	private BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(System.out));
-	private Calendar cal = Calendar.getInstance();
-	private SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
-	public static int time = 0;
-	private  StopwatchThread stop = new  StopwatchThread();
+public class StopwatchRun extends StopwatchThread{
 	
 	@Override
 	public void run() {
-		while (stop.getIsRun()) {
-			if (stop.getStaopwatchRun()) {
+		while (isRun) {
+			if (stopwatchRun) {
 				try {
 					bf.setLength(0);
 					bf.append(sdf.format(cal.getTime()));

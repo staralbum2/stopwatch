@@ -1,26 +1,21 @@
 package stopwatch;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class StopwatchThread extends Thread {
+abstract public class StopwatchThread extends Thread {
 	
-
-	private static boolean isRun = true;
-	private static boolean stopwatchRun = true;
-
-	public boolean getIsRun() {
-		return isRun;
-	}
-
-	public void isRun() {
-		isRun = false;
-	}
-
-	public boolean getStaopwatchRun() {
-		return stopwatchRun;
-	}
-
-	public void stopwatchRun(int idx) {
-		stopwatchRun = idx == 1 ? false : true;
-	}
+	protected static boolean isRun = true;
+	protected static boolean stopwatchRun = true;
+	protected BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+	protected StringBuffer bf = new StringBuffer();
+	protected BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(System.out));
+	protected Calendar cal = Calendar.getInstance();
+	protected SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
+	protected static int time = 0;
+	
 }
