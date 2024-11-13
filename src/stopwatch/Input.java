@@ -1,27 +1,27 @@
 package stopwatch;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class Input extends StopwatchThread{
+public class Input extends StopwatchThread {
+	
 	@Override
 	public void run() {
-		try {
-			String input = rd.readLine();
-			char check = input.charAt(0);
-			if(check == 'h' || check == 'H') 
-				stopwatchRun = false;
-			else if(check == 'q'|| check == 'Q')
-				isRun = false;
-			else
-				stopwatchRun = true;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {
+		StopwatchThread stop = StopwatchThread.getStop();
+		while (stop.getIsRun()) {
 			try {
-				rd.close();
-			} catch (Exception e2) {
+				char check = stop.getRd().readLine().charAt(0);
+				if (check == 'h' || check == 'H')
+					stop.stopwatchRun(1);
+				else if (check == 'q' || check == 'Q')
+					stop.isRun();
+				else 
+					stop.stopwatchRun(0);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
-		
 	}
+
 }
