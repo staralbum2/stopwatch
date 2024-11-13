@@ -17,5 +17,6 @@ abstract public class StopwatchThread extends Thread {
 	protected Calendar cal = Calendar.getInstance();
 	protected SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
 	protected static int time = 0;
-	
+	protected int second;
+	protected int minute;
 }
